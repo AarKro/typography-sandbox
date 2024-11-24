@@ -13,9 +13,11 @@ export const App: FC = () => {
     <div>
       <FontHandler/>
       <MasterControls/>
-      {Object.keys(fontDisplays).map((key) => (
-        <FontDisplay key={key} id={key} />
-      ))}
+      <section className="display-container">
+        {Object.keys(fontDisplays).map((key) => (
+          <FontDisplay key={key} id={key} />
+        ))}
+      </section>
     </div>
   );
 };
