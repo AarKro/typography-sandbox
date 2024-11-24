@@ -9,7 +9,7 @@ interface Props {
 
 export const FontDisplay: FC<Props> = ({ id }) => {
   const [ fontDisplays ] = useAtom(fontDisplaysAtom);
-  const [ _, updateFontDisplayById ] = useAtom(updateFontDisplayByIdAtom);
+  const [ , updateFontDisplayById ] = useAtom(updateFontDisplayByIdAtom);
 
   const style: React.CSSProperties = useMemo(() => {
     const font = fontDisplays[id];
@@ -17,7 +17,7 @@ export const FontDisplay: FC<Props> = ({ id }) => {
     return {
       fontFamily: font, 
     }
-  }, [fontDisplays]);
+  }, [fontDisplays, id]);
 
   const handleFontUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
     updateFontDisplayById([id, event.target.value]);

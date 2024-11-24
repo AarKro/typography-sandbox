@@ -2,8 +2,8 @@ import { FC } from "react";
 import { FontHandler } from "./components/FontHandler/FontHandler";
 import { useAtom } from "jotai";
 import { fontDisplaysAtom } from "./jotaiStore";
-import "./App.scss";
 import { FontDisplay } from "./components/FontDisplay/FontDisplay";
+import "./App.scss";
 
 export const App: FC = () => {
   const [ fontDisplays ] = useAtom(fontDisplaysAtom);
