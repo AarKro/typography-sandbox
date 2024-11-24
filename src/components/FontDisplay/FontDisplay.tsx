@@ -1,6 +1,6 @@
 import { FC, useMemo } from "react";
 import { useAtom } from "jotai";
-import { fontDisplaysAtom, updateFontDisplayByIdAtom } from "../../jotaiStore";
+import { FontConfig, fontDisplaysAtom, upsertFontDisplayByIdAtom,  } from "../../jotaiStore";
 import "./FontDisplay.scss";
 
 interface Props {
@@ -9,18 +9,24 @@ interface Props {
 
 export const FontDisplay: FC<Props> = ({ id }) => {
   const [ fontDisplays ] = useAtom(fontDisplaysAtom);
-  const [ , updateFontDisplayById ] = useAtom(updateFontDisplayByIdAtom);
+  const [ , updateFontDisplayById ] = useAtom(upsertFontDisplayByIdAtom);
 
   const style: React.CSSProperties = useMemo(() => {
-    const font = fontDisplays[id];
+    const config = fontDisplays[id];
 
     return {
-      fontFamily: font, 
+      fontFamily: config.fontFamily, 
     }
   }, [fontDisplays, id]);
 
   const handleFontUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    updateFontDisplayById([id, event.target.value]);
+    const config = fontDisplays[id];
+    const newConfig: FontConfig = {
+      ...config,
+      fontFamily: event.target.value,
+    }
+
+    updateFontDisplayById([id, newConfig]);
   };
 
   return (

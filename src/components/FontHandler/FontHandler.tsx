@@ -8,8 +8,8 @@ export const FontHandler: FC = () => {
 
   return (
     <Helmet>
-      {Object.values(fontDisplays).map((font) => (
-        <link rel="stylesheet" href={`http://fonts.googleapis.com/css?family=${font}`}/>
+      {Object.entries(fontDisplays).map(([id, config]) => (
+        <link key={id} rel="stylesheet" href={`http://fonts.googleapis.com/css?family=${config.fontFamily}`}/>
       ))}
     </Helmet>
   );
