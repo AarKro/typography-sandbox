@@ -19,7 +19,7 @@ export const FontDisplay: FC<Props> = ({ id }) => {
   }), [fontDisplay, id, masterConfig]);
 
   return (
-    <div className="border border-red-500 overflow-hidden break-words" style={styles}>
+    <div className="border border-red-500 overflow-hidden" style={styles}>
       <div>
         {overwriteMaster ? fontDisplay.fontConfig.content : masterConfig.content}
       </div>

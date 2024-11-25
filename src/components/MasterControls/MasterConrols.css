@@ -1,0 +1,11 @@
+/* overriding some styles of NextUI to get desired effect */
+
+.input-rounded-r-none [data-slot="input-wrapper"] {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.select-rounded-l-none [data-slot="trigger"] {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}

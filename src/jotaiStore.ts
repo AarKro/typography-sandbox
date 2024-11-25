@@ -2,6 +2,8 @@ import { atom, useAtom } from "jotai";
 
 export type FontConfig = {
   content: string,
+  overflowX: boolean,
+  overflowY: boolean,
   fontFamily: string,
   fontWeight: string,
   fontSize: string,
@@ -38,6 +40,8 @@ export const useFontDisplayById = (id: string) => {
 
 export const masterConfigAtom = atom<FontConfig>({
   content: '',
+  overflowX: false,
+  overflowY: true,
   fontFamily: 'Consolas',
   fontWeight: '400',
   fontSize: '16',

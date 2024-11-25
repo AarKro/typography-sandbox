@@ -26,4 +26,6 @@ export const getStyles = (config: FontConfig): React.CSSProperties => ({
   fontWeight: config.fontWeight,
   lineHeight: config.lineHeight,
   letterSpacing: `${config.letterSpacing}${config.letterSpacingUnit}`,
+  overflowX: config.overflowX ? 'auto' : 'hidden',
+  overflowY: config.overflowY ? 'auto' : 'hidden',
 });
