@@ -1,3 +1,5 @@
+import { FontConfig } from "./jotaiStore";
+
 function* idGenerator() {
   let i = 0;
   while(true) {
@@ -17,3 +19,9 @@ export const getId = (): string => {
     throw new Error('Error during ID generation. Could not generate ID');
   }
 }
+
+export const getStyles = (config: FontConfig) => ({
+  fontFamily: config.fontFamily, 
+  fontSize: `${config.fontSize}${config.fontSizeUnit}`,
+  fontWeight: config.fontWeight,
+});

@@ -1,6 +1,7 @@
-import { FC, useMemo } from "react";
+import { FC, useMemo, useState } from "react";
 import { useAtom } from "jotai";
-import { FontConfig, fontDisplaysAtom, upsertFontDisplayByIdAtom,  } from "../../jotaiStore";
+import { DisplayConfig, FontConfig, masterConfigAtom, upsertFontDisplayByIdAtom, useFontDisplayById,  } from "../../jotaiStore";
+import { getStyles } from "../../utils";
 import "./FontDisplay.scss";
 
 interface Props {
@@ -8,34 +9,34 @@ interface Props {
 }
 
 export const FontDisplay: FC<Props> = ({ id }) => {
-  const [ fontDisplays ] = useAtom(fontDisplaysAtom);
-  const [ , updateFontDisplayById ] = useAtom(upsertFontDisplayByIdAtom);
+  const fontDisplay = useFontDisplayById(id);
+  const [ , upsertFontDisplayById ] = useAtom(upsertFontDisplayByIdAtom);
+  const [ masterConfig ] = useAtom(masterConfigAtom);
+  const [ overwriteMaster, setOverwriteMaster] = useState<boolean>(false);
 
-  const style: React.CSSProperties = useMemo(() => {
-    const config = fontDisplays[id];
+  const styles: React.CSSProperties = useMemo(() => (
+    getStyles(overwriteMaster ? fontDisplay.fontConfig : masterConfig)
+  ), [fontDisplay, id, masterConfig]);
 
-    return {
-      fontFamily: config.fontFamily, 
+  const handleFontUpdate = (event: React.ChangeEvent<HTMLInputElement>, styleName: keyof FontConfig) => {
+    const newConfig: DisplayConfig = {
+      ...fontDisplay,
+      fontConfig: {
+        ...fontDisplay.fontConfig,
+        [styleName]: event.target.value,
+      }
     }
-  }, [fontDisplays, id]);
 
-  const handleFontUpdate = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const config = fontDisplays[id];
-    const newConfig: FontConfig = {
-      ...config,
-      fontFamily: event.target.value,
-    }
-
-    updateFontDisplayById([id, newConfig]);
+    upsertFontDisplayById([id, newConfig]);
   };
 
   return (
-    <div className="font-display" style={style}>
-      <div className="font-display__controls">
-        <input type="text" onChange={handleFontUpdate}/>
-      </div>
+    <div className="font-display" style={styles}>
+      {/* <div className="font-display__controls">
+        <input type="text" onChange={(event) => handleFontUpdate(event, "fontFamily")}/>
+      </div> */}
       <div className="font-display__content">
-        this is a sample text
+        {overwriteMaster ? fontDisplay.fontConfig.content : masterConfig.content}
       </div>
     </div>
   );
