@@ -61,14 +61,14 @@ export const MasterControls: FC = () => {
           Add
         </Button>
       </form>
-      <Divider orientation="vertical" className="h-auto mx-3"/>
+      <Divider orientation="vertical" className="h-auto m-3"/>
       <div className="flex flex-row flex-wrap">
         <Input type="text" value={masterConfig.content} className="w-52 m-1" label="Content" placeholder="text which will be displayed" onChange={(event) => handleMasterConfigUpdate(event.target.value, "content")}/>
         <Input type="text" value={masterConfig.fontFamily} className="w-52 m-1" label="Font Family" placeholder="font from Google Fonts" onChange={(event) => handleMasterConfigUpdate(event.target.value, "fontFamily")}/>
         <Select
           items={fontWeightValues}
           label="Font Weight"
-          className="w-32 m-1"
+          className="w-36 m-1"
           selectedKeys={[masterConfig.fontWeight]}
           onChange={(event) => handleMasterConfigUpdate(event.target.value, "fontWeight")}
         >
@@ -85,7 +85,7 @@ export const MasterControls: FC = () => {
           {(unit) => <SelectItem key={unit.key}>{unit.label}</SelectItem>}
         </Select>
         <Input type="number" value={masterConfig.lineHeight} step="0.1" className="w-24 m-1" label="Line Height" placeholder="" onChange={(event) => handleMasterConfigUpdate(event.target.value, "lineHeight")}/>
-        <Input type="number" value={masterConfig.letterSpacing} className="m-1 mr-0 w-28 input-rounded-r-none" label="Letter Spacing" placeholder="" onChange={(event) => handleMasterConfigUpdate(event.target.value, "letterSpacing")}/>
+        <Input type="number" value={masterConfig.letterSpacing} className="m-1 mr-0 w-32 input-rounded-r-none" label="Letter Spacing" placeholder="" onChange={(event) => handleMasterConfigUpdate(event.target.value, "letterSpacing")}/>
         <Select
           items={fontSizeUnits}
           label="Unit"

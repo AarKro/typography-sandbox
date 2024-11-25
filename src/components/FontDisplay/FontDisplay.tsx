@@ -1,5 +1,6 @@
 import { FC, useMemo, useState } from "react";
 import { useAtom } from "jotai";
+import { Card, CardBody } from "@nextui-org/react";
 import { masterConfigAtom, useFontDisplayById,  } from "../../jotaiStore";
 import { getStyles } from "../../utils";
 
@@ -16,13 +17,15 @@ export const FontDisplay: FC<Props> = ({ id }) => {
     width: `${fontDisplay.width}px`,
     height: `${fontDisplay.height}px`,
     ...getStyles(overwriteMaster ? fontDisplay.fontConfig : masterConfig)
-  }), [fontDisplay, id, masterConfig]);
+  }), [fontDisplay.fontConfig, fontDisplay.height, fontDisplay.width, masterConfig, overwriteMaster]);
 
   return (
-    <div className="border border-red-500 overflow-hidden" style={styles}>
-      <div>
-        {overwriteMaster ? fontDisplay.fontConfig.content : masterConfig.content}
-      </div>
-    </div>
+    <Card className="m-2" style={styles}>
+      <CardBody>
+        <p>
+          {overwriteMaster ? fontDisplay.fontConfig.content : masterConfig.content}
+        </p>
+      </CardBody>
+    </Card>
   );
 }
