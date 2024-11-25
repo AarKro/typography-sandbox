@@ -20,8 +20,10 @@ export const getId = (): string => {
   }
 }
 
-export const getStyles = (config: FontConfig) => ({
+export const getStyles = (config: FontConfig): React.CSSProperties => ({
   fontFamily: config.fontFamily, 
   fontSize: `${config.fontSize}${config.fontSizeUnit}`,
   fontWeight: config.fontWeight,
+  lineHeight: config.lineHeight,
+  letterSpacing: `${config.letterSpacing}${config.letterSpacingUnit}`,
 });

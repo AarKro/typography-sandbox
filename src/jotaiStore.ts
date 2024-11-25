@@ -3,15 +3,17 @@ import { atom, useAtom } from "jotai";
 export type FontConfig = {
   content: string,
   fontFamily: string,
-  fontWeight: number,
-  fontSize: number,
+  fontWeight: string,
+  fontSize: string,
   fontSizeUnit: string,
+  lineHeight: string,
+  letterSpacing: string,
+  letterSpacingUnit: string,
 }
 
 export type DisplayConfig = {
-  width: number,
-  height: number,
-  sizeUnit: string,
+  width: string,
+  height: string,
   fontConfig: FontConfig,
 };
 
@@ -37,7 +39,10 @@ export const useFontDisplayById = (id: string) => {
 export const masterConfigAtom = atom<FontConfig>({
   content: '',
   fontFamily: 'Consolas',
-  fontWeight: 400,
-  fontSize: 16,
+  fontWeight: '400',
+  fontSize: '16',
   fontSizeUnit: 'px',
+  lineHeight: '1.2',
+  letterSpacing: '0',
+  letterSpacingUnit: 'px',
 });
