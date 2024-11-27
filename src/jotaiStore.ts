@@ -20,6 +20,7 @@ export type FontConfig = {
 export type DisplayConfig = {
   width: string,
   height: string,
+  defaultOverwrite: boolean,
   fontConfig: FontConfig,
 };
 
@@ -33,7 +34,15 @@ export const upsertFontDisplayByIdAtom = atom(null, (_, set, [ id, config ]: Fon
   set(fontDisplaysAtom, (prev) => ({
     ...prev,
     [id]: config,
-  }))
+  }));
+});
+export const deleteFontDisplayByIdAtom = atom(null, (get, set, id: string) => {
+  const fontDisplays = get(fontDisplaysAtom);
+  delete fontDisplays[id];
+
+  set(fontDisplaysAtom, () => ({
+    ...fontDisplays
+  }));
 });
 
 export const useFontDisplayById = (id: string) => {

@@ -21,7 +21,7 @@ export const getId = (): string => {
 }
 
 export const getStyles = (config: FontConfig): React.CSSProperties => {
-  let styles: React.CSSProperties = {
+  const styles: React.CSSProperties = {
     fontFamily: config.fontFamily, 
     fontSize: `${config.fontSize}${config.fontSizeUnit}`,
     fontWeight: config.fontWeight,
