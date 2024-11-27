@@ -9,9 +9,9 @@ export const FontHandler: FC = () => {
 
   return (
     <Helmet>
-      <link rel="stylesheet" href={`http://fonts.googleapis.com/css?family=${masterConfig.fontFamily}`}/>
+      <link rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${masterConfig.fontFamily}`}/>
       {Object.entries(fontDisplays).map(([id, config]) => (
-        <link key={id} rel="stylesheet" href={`http://fonts.googleapis.com/css?family=${config.fontConfig.fontFamily}`}/>
+        <link key={id} rel="stylesheet" href={`https://fonts.googleapis.com/css?family=${config.fontConfig.fontFamily}`}/>
       ))}
     </Helmet>
   );
