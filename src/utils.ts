@@ -20,12 +20,30 @@ export const getId = (): string => {
   }
 }
 
-export const getStyles = (config: FontConfig): React.CSSProperties => ({
-  fontFamily: config.fontFamily, 
-  fontSize: `${config.fontSize}${config.fontSizeUnit}`,
-  fontWeight: config.fontWeight,
-  lineHeight: config.lineHeight,
-  letterSpacing: `${config.letterSpacing}${config.letterSpacingUnit}`,
+export const getStyles = (config: FontConfig): React.CSSProperties => {
+  let styles: React.CSSProperties = {
+    fontFamily: config.fontFamily, 
+    fontSize: `${config.fontSize}${config.fontSizeUnit}`,
+    fontWeight: config.fontWeight,
+    lineHeight: config.lineHeight,
+    letterSpacing: `${config.letterSpacing}${config.letterSpacingUnit}`,
+    fontStyle: config.italic ? 'italic' : 'normal',
+    textDecoration: config.underline ? 'underline' : 'none',
+  };
+
+  if (config.fontColor != '') {
+    styles.color = `#${config.fontColor}`
+    
+  }
+
+  if (config.cardColor != '') {
+    styles.backgroundColor = `#${config.cardColor}`
+  }
+
+  return styles;
+};
+
+export const getOverflowStyles = (config: FontConfig): React.CSSProperties => ({
   overflowX: config.overflowX ? 'auto' : 'hidden',
   overflowY: config.overflowY ? 'auto' : 'hidden',
 });

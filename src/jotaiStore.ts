@@ -11,6 +11,10 @@ export type FontConfig = {
   lineHeight: string,
   letterSpacing: string,
   letterSpacingUnit: string,
+  cardColor: string,
+  fontColor: string,
+  underline: boolean,
+  italic: boolean,
 }
 
 export type DisplayConfig = {
@@ -49,4 +53,10 @@ export const masterConfigAtom = atom<FontConfig>({
   lineHeight: '1.2',
   letterSpacing: '0',
   letterSpacingUnit: 'px',
+  cardColor: '',
+  fontColor: '',
+  underline: false,
+  italic: false,
 });
+
+export const isDarkModeAtom = atom<boolean>(true);

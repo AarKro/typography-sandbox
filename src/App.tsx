@@ -10,10 +10,12 @@ export const App: FC = () => {
   const [ fontDisplays ] = useAtom(fontDisplaysAtom);
 
   return (
-    <div className="h-screen w-screen p-2">
+    <div className="h-screen w-screen p-2 overflow-auto">
       <FontHandler/>
       <MasterControls/>
-      <Divider className="m-3"/>
+      <div className="w-full p-3">
+        <Divider/>
+      </div>
       <section className="flex flex-row flex-wrap">
         {Object.keys(fontDisplays).map((key) => (
           <FontDisplay key={key} id={key} />
