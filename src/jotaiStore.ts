@@ -69,3 +69,5 @@ export const masterConfigAtom = atom<FontConfig>({
 });
 
 export const isDarkModeAtom = atom<boolean>(true);
+
+export const customLinkTagsAtom = atom<string>('');

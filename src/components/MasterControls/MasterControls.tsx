@@ -1,17 +1,19 @@
 import { useAtom } from "jotai";
 import { FC, useEffect, useState } from "react";
-import { Button, Card, Divider, Input } from "@nextui-org/react";
-import { isDarkModeAtom, masterConfigAtom, upsertFontDisplayByIdAtom } from "../../jotaiStore";
+import { Button, Card, Divider, Input, Popover, PopoverContent, PopoverTrigger, Textarea } from "@nextui-org/react";
+import { customLinkTagsAtom, isDarkModeAtom, masterConfigAtom, upsertFontDisplayByIdAtom } from "../../jotaiStore";
 import { FontControls } from "../FontControls/FontControls";
 import { getId } from "../../utils";
 import LightModeIcon from "../../assets/light_mode.svg";
 import DarkModeIcon from "../../assets/dark_mode.svg";
+import SettingsIcon from "../../assets/settings.svg";
 import "./MasterConrols.css";
 
 export const MasterControls: FC = () => {
   const [ , upsertFontDisplayById ] = useAtom(upsertFontDisplayByIdAtom);
   const [ masterConfig, setMasterConfig ] = useAtom(masterConfigAtom);
   const [ isDarkMode, setIsDarkMode ] = useAtom(isDarkModeAtom);
+  const [ customLinkTags, setCustomLinkTags ] = useAtom(customLinkTagsAtom); 
   const [ width, setWidth ] = useState<string>('');
   const [ height, setHeight ] = useState<string>('');
 
@@ -50,6 +52,25 @@ export const MasterControls: FC = () => {
           <Button className="m-1" isIconOnly color="default" variant={isDarkMode ? 'ghost' : 'solid'} onClick={() => setIsDarkMode(!isDarkMode)}>
             { isDarkMode ? <DarkModeIcon/> : <LightModeIcon/> }
           </Button>
+          <Popover placement="bottom">
+            <PopoverTrigger>
+              <Button className="m-1" isIconOnly color="default" variant="ghost">
+                <SettingsIcon/>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <h2>Custom Google Font Link Tags</h2>
+              <Textarea
+                placeholder="paste embed code from google fonts here"
+                classNames={{
+                  base: "w-fit m-1 overflow-auto",
+                  input: "resize whitespace-nowrap"
+                }}
+                value={customLinkTags}
+                onChange={(event) => setCustomLinkTags(event.target.value)}
+              />
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </Card>
